@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css" />
+    <title>
+        My Internet Market
+    </title>
+</head>
+<body>
+    <header>
+        <h1>Онлайн-магазин телефонов</h1>
+        <nav>
+            <ul>
+                <ol>@Html.ActionLink("Go to home", "Index", "Home", null, new { @class = "MenuButtons" })</ol>
+                <ol>@Html.ActionLink("Apple", "Index", "Home", null, new { @class = "MenuButtons" })</ol>
+                <ol>@Html.ActionLink("Microsoft", "Index", "Home", null, new { @class = "MenuButtons" })</ol>
+                <ol>@Html.ActionLink("Go to basket", "Basket", "Home", null, new { @class = "MenuButtons" })</ol>
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+    <sidebar id="sidebar">
+        <p>SIDEBAR HERE</p>
+        <ul>
+            <li>@Html.ActionLink("Go to home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Apple", "Index", "Home")</li>
+            <li>@Html.ActionLink("Microsoft", "Index", "Home")</li>
+            <li>@Html.ActionLink("Samsung", "Index", "Home")</li>
+        </ul>
+    </sidebar>
+
+
+    <main>
+        @RenderBody()
+    </main>
+
+
+
+    <footer>
+        <p>
+            @Html.ActionLink("Ліцензія", "Index", "Home") <br />
+            Copyright © @DateTime.Now.Year Pasternak Andrii
+        </p>
+    </footer>
+</body>
+</html>

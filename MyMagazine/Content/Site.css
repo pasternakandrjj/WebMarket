@@ -1,0 +1,85 @@
+﻿* {
+    padding-top: 0px;
+    padding-bottom: 20px;
+    background-color: #F6F6F6;
+    font-family: Consolas,'Segoe UI',Arial;
+    background-color: khaki;
+}
+
+body {
+    background-color: black;
+    height: 100%;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.table td {
+    text-align: center;
+}
+
+.table img {
+    margin-left: auto;
+    height: 100px;
+    width: 100px;
+}
+
+.basket td {
+    padding-left: 200px;
+}
+
+header nav ul ol {
+    float: left;
+    padding-left: 200px;
+    font-size: 20px;
+}
+
+header h1 {
+    font-size: 30px;
+    text-align: center;
+    color: darkblue;
+}
+
+header {
+    background-color: #ccc;
+    border: 2px solid red;
+    height: 150px;
+    position: relative;
+    width: 100%;
+}
+
+sidebar li {
+    text-align: justify;
+}
+
+sidebar {
+    margin-top: 10px;
+    background-color: #bbbbbb;
+    border: 2px dotted red;
+    float: left;
+    width: 15%;
+    position: relative;
+}
+
+.btn-group {
+    position: relative;
+}
+
+main {
+    margin-top: 10px;
+    margin-left: 17%;
+    margin-right: 0px;
+    padding-left: 20px;
+    min-height: 500px;
+    max-width: 80%;
+    border: 2px double red;
+    font-size: 20px;
+    position: relative;
+}
+
+footer {
+    background-color: #ccc;
+    position: absolute;
+    height: 60px;
+    height: auto;
+    width: 100%;
+}

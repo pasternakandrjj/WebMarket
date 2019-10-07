@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h3>BASKET</h3>
+<table class="basket">
+    <thead>
+        <tr>
+            <td>Email</td>
+            <td>FIO</td>
+            <td>PhoneId</td>
+            <td>&nbsp;</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var purchase in ViewBag.Purchases)
+            {
+                <tr>
+                    <td>@purchase.Email</td>
+                    <td>@purchase.FIO</td>
+                    <td>@purchase.PhoneId</td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

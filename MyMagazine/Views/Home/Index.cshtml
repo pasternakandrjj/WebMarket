@@ -1,0 +1,51 @@
+﻿@model MyMagazine.Models.IndexViewModel
+@using MyMagazine.Helpers
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<h3>Different phones in the market</h3>
+
+<table class="table">
+    <tr>
+        <td>Модель</td>
+        <td>Производитель</td>
+        <td>Price</td>
+        <td>Image</td>
+    </tr>
+    @foreach (var item in Model.Phones)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Producer</td>
+            <td>@item.Price</td>
+            <td>
+                @{
+                    switch (item.Producer)
+                    {
+                        case "Huawei":
+                            // Use the text block below to separate html elements from code
+                            <text>
+                                <img src="~/Content/huawei.jpeg" />
+                            </text>
+                            break;  // Always break each case
+                        case "Samsung":
+                            <text>
+                                <img src="~/Content/samsung.jpg" />
+                            </text>
+                            break;
+                        default:
+                            <text>
+                                <img src="~/Content/windowsphone.jpg" />
+                            </text>
+                            break;
+                    }
+                }
+            </td>
+            <td><a href="/Home/Buy/@item.Id">Buy</a></td>
+        </tr>
+    }
+</table>
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>
