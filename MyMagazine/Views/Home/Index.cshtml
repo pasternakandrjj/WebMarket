@@ -8,9 +8,9 @@
 <table class="table">
     <tr>
         <td>Модель</td>
-        <td>Производитель</td>
-        <td>Price</td>
-        <td>Image</td>
+        <td>Марка-виробник</td>
+        <td>Ціна</td>
+        <td>Зображення</td>
     </tr>
     @foreach (var item in Model.Phones)
     {
@@ -31,6 +31,16 @@
                         case "Samsung":
                             <text>
                                 <img src="~/Content/samsung.jpg" />
+                            </text>
+                            break;
+                        case "Apple":
+                            <text>
+                                <img src="~/Content/iphone.jpg" />
+                            </text>
+                            break;
+                        case "Xiaomi":
+                            <text>
+                                <img src="~/Content/xiaomi.jpg" />
                             </text>
                             break;
                         default:

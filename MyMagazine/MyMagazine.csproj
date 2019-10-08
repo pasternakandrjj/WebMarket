@@ -144,8 +144,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\huawei.jpeg" />
+    <Content Include="Content\iphone.jpg" />
     <Content Include="Content\samsung.jpg" />
     <Content Include="Content\windowsphone.jpg" />
+    <Content Include="Content\xiaomi.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
