@@ -13,7 +13,7 @@ body {
     padding-bottom: 60px;
 }
 
-.table td {
+th {
     text-align: center;
 }
 
@@ -63,7 +63,9 @@ sidebar {
 .btn-group {
     position: relative;
 }
-
+table{
+    align-content:center;
+}
 main {
     margin-top: 10px;
     margin-left: 17%;
@@ -82,5 +84,4 @@ footer {
     height: 60px;
     height: auto;
     width: 100%;
-
 }

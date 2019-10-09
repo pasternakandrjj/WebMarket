@@ -3,7 +3,7 @@
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<h3>Different phones in the market</h3>
+<h3>Apple</h3>
 
 <table class="table">
     <tr>
@@ -57,5 +57,5 @@
 </table>
 <br />
 <div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("SortedApple", new { page = x }))
 </div>

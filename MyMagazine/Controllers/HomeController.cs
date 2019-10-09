@@ -2,35 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc; 
+using System.Web.Mvc;
 using MyMagazine.Models;
-using MyMagazine.Helpers; 
+using MyMagazine.Helpers;
 
 namespace MyMagazine.Controllers
 {
     public class HomeController : Controller
     {
-        PhoneContext phoneContext = new PhoneContext(); 
+        PhoneContext phoneContext = new PhoneContext();
         public ActionResult Index(int page = 1)
         {
             int pageSize = 4; // количество объектов на страницу
             IEnumerable<Phone> phonesPerPages = phoneContext.Phones
-                .OrderBy(x=>x.Id)
+                .OrderBy(x => x.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize);
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phoneContext.Phones.Count() };
             IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Phones = phonesPerPages };
             return View(ivm);
         }
-        //public ActionResult Index()
-        //{
-        //    //get data
-        //    IEnumerable<Phone> phones = phoneContext.Phones;
-
-        //    //phones to dynamic ViewBag
-        //    ViewBag.Phones = phones;
-        //    return View();
-        //}
 
         [HttpGet]
         public ActionResult Buy(int id)
@@ -53,6 +44,11 @@ namespace MyMagazine.Controllers
             return ToBasket();
         }
 
+        public RedirectResult ToBasket()
+        {
+            return RedirectPermanent("/Home/Basket");
+        }
+
         public ActionResult Basket()
         {
             //get data
@@ -62,6 +58,7 @@ namespace MyMagazine.Controllers
             ViewBag.Purchases = purchases;
             return View();
         }
+
         [HttpGet]
         public ActionResult GetPhone()
         {
@@ -74,9 +71,63 @@ namespace MyMagazine.Controllers
             return Content($"{title} + {price}");
         }
 
-        public RedirectResult ToBasket()
+        public ActionResult SortedApple(int page = 1)
         {
-            return RedirectPermanent("/Home/Basket");
+            int pageSize = 4; // количество объектов на страницу
+
+            IEnumerable<Phone> iphones = phoneContext.Phones
+                .Where(x => x.Producer == "Apple")
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phoneContext.Phones.Where(x => x.Producer == "Apple").Count() };
+            IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Phones = iphones };
+            return View(ivm);
+        }
+        public ActionResult SortedHuawei(int page = 1)
+        {
+            int pageSize = 4; // количество объектов на страницу
+
+            IEnumerable<Phone> huaweis = phoneContext.Phones
+                .Where(x => x.Producer == "Huawei")
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phoneContext.Phones.Where(x => x.Producer == "Huawei").Count() };
+            IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Phones = huaweis };
+            return View(ivm);
+        }
+        public ActionResult SortedMicrosoft(int page = 1)
+        {
+            int pageSize = 4; // количество объектов на страницу 
+            IEnumerable<Phone> microsofts = phoneContext.Phones
+                .Where(x => x.Producer == "WindowsPhone")
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phoneContext.Phones.Where(x => x.Producer == "WindowsPhone").Count() };
+            IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Phones = microsofts };
+            return View(ivm);
+        }
+        public ActionResult SortedSamsung(int page = 1)
+        {
+            int pageSize = 4; // количество объектов на страницу 
+            IEnumerable<Phone> microsofts = phoneContext.Phones
+                .Where(x => x.Producer == "Samsung")
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phoneContext.Phones.Where(x => x.Producer == "Samsung").Count() };
+            IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Phones = microsofts };
+            return View(ivm);
+        }
+        public ActionResult SortedXiaomi()
+        {
+            IEnumerable<Phone> xiaomis = phoneContext.Phones
+                .Where(x => x.Producer == "Xiaomi");
+
+
+            return View(xiaomis);
         }
     }
 }

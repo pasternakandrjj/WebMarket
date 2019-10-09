@@ -179,7 +179,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Buy.cshtml" />
     <Content Include="Views\Home\Basket.cshtml" />
-    <Content Include="Views\Home\GetPhone.cshtml" />
+    <Content Include="Views\Home\SortedApple.cshtml" />
+    <Content Include="Views\Home\SortedMicrosoft.cshtml" />
+    <Content Include="Views\Home\SortedSamsung.cshtml" />
+    <Content Include="Views\Home\SortedHuawei.cshtml" />
+    <Content Include="Views\Home\SortedXiaomi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

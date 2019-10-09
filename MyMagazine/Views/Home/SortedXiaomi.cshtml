@@ -1,23 +1,32 @@
-﻿@model MyMagazine.Models.IndexViewModel
-@using MyMagazine.Helpers
+﻿@model IEnumerable<MyMagazine.Models.Phone>
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<h3>Different phones in the market</h3>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>Модель</th>
         <th>Марка-виробник</th>
         <th>Ціна</th>
         <th>Зображення</th>
+        <th></th>
     </tr>
-    @foreach (var item in Model.Phones)
+
+    @foreach (var item in Model)
     {
         <tr>
-            <td>@item.Name</td>
-            <td>@item.Producer</td>
-            <td>@item.Price</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
             <td>
                 @{
                     switch (item.Producer)
@@ -51,11 +60,12 @@
                     }
                 }
             </td>
-            <td><a href="/Home/Buy/@item.Id">Buy</a></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
         </tr>
     }
+
 </table>
-<br />
-<div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
-</div>
