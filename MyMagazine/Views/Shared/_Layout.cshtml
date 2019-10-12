@@ -1,7 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @Styles.Render("~/Content/css") 
+    @Styles.Render("~/Content/css")
+
+    @section Scripts { @Scripts.Render("~/bundles/jqueryval")  }
+
     <link type="text/css" rel="stylesheet" href="~/Content/Site.css" />
     <title>
         My Internet Shop
@@ -13,9 +16,23 @@
         <nav>
             <ul>
                 <ol>@Html.ActionLink("Go to home", "Index", "Home", null, new { @class = "MenuButtons" })</ol>
-                <ol>@Html.ActionLink("Apple", "Index", "Home", null, new { @class = "MenuButtons" })</ol> 
-                <ol>@Html.ActionLink("Samsung", "Index", "Home", null, new { @class = "MenuButtons" })</ol> 
-                <ol>@Html.ActionLink("Go to basket", "Basket", "Home", null, new { @class = "MenuButtons" })</ol>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <ol>@Html.ActionLink("Go to register", "Register", "Home", null, new { @class = "MenuButtons" })</ol>
+                }
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <ol>@Html.ActionLink("Go to login", "Login", "Home", null, new { @class = "MenuButtons" })</ol>
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ol>@Html.ActionLink("Go to basket", "Basket", "Home", null, new { @class = "MenuButtons" })</ol>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ol>@Html.ActionLink("Log out", "Logoff", "Home", null, new { @class = "MenuButtons" })</ol>
+                }
             </ul>
         </nav>
     </header>
@@ -30,7 +47,7 @@
             <li>@Html.ActionLink("Apple", "SortedApple", "Home")</li>
             <li>@Html.ActionLink("Microsoft", "SortedMicrosoft", "Home")</li>
             <li>@Html.ActionLink("Samsung", "SortedHuawei", "Home")</li>
-            <li>@Html.ActionLink("Huawei", "SortedSamsung", "Home")</li> 
+            <li>@Html.ActionLink("Huawei", "SortedSamsung", "Home")</li>
             <li>@Html.ActionLink("Xiaomi", "SortedXiaomi", "Home")</li>
         </ul>
     </sidebar>

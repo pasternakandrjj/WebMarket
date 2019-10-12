@@ -133,9 +133,12 @@
     </Compile>
     <Compile Include="Helpers\PagingHelpers.cs" />
     <Compile Include="Models\DBInitializer.cs" />
+    <Compile Include="Models\Models.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\PhoneContext.cs" />
     <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +187,9 @@
     <Content Include="Views\Home\SortedSamsung.cshtml" />
     <Content Include="Views\Home\SortedHuawei.cshtml" />
     <Content Include="Views\Home\SortedXiaomi.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Logoff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

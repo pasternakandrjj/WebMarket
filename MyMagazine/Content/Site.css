@@ -6,6 +6,18 @@
     background-color: khaki;
 }
 
+.form-group {
+    max-width: 80%;
+}
+
+.col-md-10 {
+    max-width: 80%;
+}
+
+.form-horizontal {
+    max-width: 80%;
+}
+
 body {
     background-color: black;
     height: 100%;
@@ -29,7 +41,7 @@ th {
 
 header nav ul ol {
     float: left;
-    padding-left: 200px;
+    padding-left: 270px;
     font-size: 20px;
 }
 
@@ -63,9 +75,11 @@ sidebar {
 .btn-group {
     position: relative;
 }
-table{
-    align-content:center;
+
+table {
+    align-content: center;
 }
+
 main {
     margin-top: 10px;
     margin-left: 17%;
