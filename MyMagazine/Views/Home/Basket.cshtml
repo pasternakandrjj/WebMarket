@@ -1,26 +1,30 @@
-﻿@{
+﻿@model MyMagazine.Models.IndexViewModel
+@using MyMagazine.Helpers
+@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-
 <h3>BASKET</h3>
-<table class="basket">
+
+<table class="table">
     <thead>
         <tr>
-            <td>Email</td>
-            <td>FIO</td>
-            <td>PhoneId</td> 
+            <th>Email</th>
+            <th>FIO</th>
+            <th>PhoneId</th>
         </tr>
     </thead>
     <tbody>
-        @{
-            foreach (var purchase in ViewBag.Purchases)
-            {
-                <tr>
-                    <td>@purchase.Email</td>
-                    <td>@purchase.FIO</td>
-                    <td>@purchase.PhoneId</td> 
-                </tr>
-            }
+        @foreach (var item in Model.Purchases)
+        {
+            <tr>
+                <td>@item.Email</td>
+                <td>@item.FIO</td>
+                <td>@item.PhoneId</td> 
+            </tr>
         }
     </tbody>
 </table>
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>

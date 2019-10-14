@@ -78,3 +78,5 @@ C:\Users\paste\OneDrive\Рабочий стол\site\MyMagazine\MyMagazine\bin\E
 C:\Users\paste\OneDrive\Рабочий стол\site\MyMagazine\MyMagazine\bin\EntityFramework.SqlServer.dll
 C:\Users\paste\OneDrive\Рабочий стол\site\MyMagazine\MyMagazine\bin\EntityFramework.xml
 C:\Users\paste\OneDrive\Рабочий стол\site\MyMagazine\MyMagazine\bin\EntityFramework.SqlServer.xml
+C:\Users\paste\OneDrive\Рабочий стол\site\MyMagazine\MyMagazine\bin\System.Web.Providers.dll
+C:\Users\paste\OneDrive\Рабочий стол\site\MyMagazine\MyMagazine\bin\System.Web.Providers.xml

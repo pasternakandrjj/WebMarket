@@ -24,6 +24,7 @@ namespace MyMagazine.Models
     }
     public class IndexViewModel
     {
+        public IEnumerable<Purchase> Purchases { get; set; }
         public IEnumerable<Phone> Phones { get; set; }
         public PageInfo PageInfo { get; set; }
     }

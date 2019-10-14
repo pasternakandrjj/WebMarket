@@ -9,7 +9,7 @@ namespace MyMagazine.Models
     public class LoginModel
     {
         [Required]
-        public string Email { get; set; }
+        public string Email { get; set; } 
 
         [Required]
         [DataType(DataType.Password)]
@@ -27,10 +27,9 @@ namespace MyMagazine.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Password are not equal!")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         public int Age { get; set; }
     }
 }

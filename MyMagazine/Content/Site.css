@@ -1,22 +1,14 @@
 ﻿* {
-    padding-top: 0px;
+    padding: 0px, inherit,20px;
     padding-bottom: 20px;
     background-color: #F6F6F6;
     font-family: Consolas,'Segoe UI',Arial;
     background-color: khaki;
 }
 
-.form-group {
+.form-group, .col-md-10, .form-horizontal {
     max-width: 80%;
-}
-
-.col-md-10 {
-    max-width: 80%;
-}
-
-.form-horizontal {
-    max-width: 80%;
-}
+} 
 
 body {
     background-color: black;
@@ -33,10 +25,6 @@ th {
     margin-left: auto;
     height: 100px;
     width: 100px;
-}
-
-.basket td {
-    padding-left: 200px;
 }
 
 header nav ul ol {
@@ -56,7 +44,8 @@ header {
     border: 2px solid red;
     height: 150px;
     position: relative;
-    width: 100%;
+    width: auto;
+    max-width: 100%;
 }
 
 sidebar li {
@@ -70,17 +59,18 @@ sidebar {
     float: left;
     width: 15%;
     position: relative;
+
 }
 
-.btn-group {
+/*.btn-group {
     position: relative;
-}
+}*/
 
 table {
     align-content: center;
 }
 
-main {
+main { 
     margin-top: 10px;
     margin-left: 17%;
     margin-right: 0px;
