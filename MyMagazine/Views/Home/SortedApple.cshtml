@@ -4,7 +4,6 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 <h3>Apple</h3>
-
 <table class="table">
     <tr>
         <th>Модель</th>
@@ -52,6 +51,14 @@
                 }
             </td>
             <td><a href="/Home/Buy/@item.Id">Buy</a></td>
+
+            @if (User.Identity.Name == "admin")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "EditGoods", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteGoods", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 </table>

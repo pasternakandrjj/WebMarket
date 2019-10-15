@@ -193,6 +193,9 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Logoff.cshtml" />
+    <Content Include="Views\Home\AddGoods.cshtml" />
+    <Content Include="Views\Home\EditGoods.cshtml" />
+    <Content Include="Views\Home\DeleteGoods.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

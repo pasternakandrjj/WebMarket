@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MyMagazine.Models;
 using MyMagazine.Helpers;
 using System.Web.Security;
+using System.Net;
 
 namespace MyMagazine.Controllers
 {
@@ -14,7 +15,7 @@ namespace MyMagazine.Controllers
         PhoneContext phoneContext = new PhoneContext();
         public ActionResult Index(int page = 1)
         {
-            int pageSize = 4;  
+            int pageSize = 4;
             IEnumerable<Phone> phonesPerPages = phoneContext.Phones
                 .OrderBy(x => x.Id)
                 .Skip((page - 1) * pageSize)
@@ -28,7 +29,7 @@ namespace MyMagazine.Controllers
         [HttpGet]
         public ActionResult Buy(int id)
         {
-            ViewBag.Id = id; 
+            ViewBag.Id = id;
             return View();
         }
 
@@ -114,7 +115,7 @@ namespace MyMagazine.Controllers
                 {
                     ModelState.AddModelError("", "Пользователя с таким логином и паролем нет");
                 }
-            } 
+            }
             return View(model);
         }
 
@@ -162,7 +163,7 @@ namespace MyMagazine.Controllers
             return View(ivm);
         }
 
-        [Authorize(Roles="admin")] 
+        [HttpGet]
         public ActionResult SortedMicrosoft(int page = 1)
         {
             int pageSize = 4; // количество объектов на страницу 
@@ -198,6 +199,70 @@ namespace MyMagazine.Controllers
 
 
             return View(xiaomis);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public ActionResult AddGoods()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public ActionResult AddGoods(Phone phone)
+        {
+            phoneContext.Phones.Add(phone);
+            phoneContext.SaveChanges();
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public ActionResult EditGoods(int? id)
+        {
+            var toupdate = phoneContext.Phones
+                .Where(s => s.Id == id)
+                .FirstOrDefault();
+            return View(toupdate);
+        }
+        //Зміна видаляє елемнт і добавляє в уінець змінений
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public ActionResult EditGoods(int id, Phone phone)
+        {
+
+            Phone todelete = phoneContext.Phones.Find(id);
+            phoneContext.Phones.Remove(todelete);
+            phoneContext.Phones.Add(phone);
+            phoneContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public ActionResult DeleteGoods(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Phone todelete = phoneContext.Phones.Find(id);
+            if (todelete == null)
+            {
+                return HttpNotFound();
+            }
+            return View(todelete);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public ActionResult DeleteGoods(int id)
+        {
+            Phone todelete = phoneContext.Phones.Find(id);
+            phoneContext.Phones.Remove(todelete);
+            phoneContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Logoff()

@@ -5,6 +5,10 @@
 }
 <h3>Different phones in the market</h3>
 
+@if (User.Identity.Name == "admin")
+{
+    <li>@Html.ActionLink("Add Goods", "AddGoods", "Home")</li>
+}
 <table class="table">
     <tr>
         <th>Модель</th>
@@ -52,6 +56,13 @@
                 }
             </td>
             <td><a href="/Home/Buy/@item.Id">Buy</a></td>
+            @if (User.Identity.Name == "admin")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "EditGoods", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteGoods", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 </table>

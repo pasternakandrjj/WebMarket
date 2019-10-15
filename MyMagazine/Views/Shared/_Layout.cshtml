@@ -49,6 +49,12 @@
             <li>@Html.ActionLink("Samsung", "SortedSamsung", "Home")</li>
             <li>@Html.ActionLink("Huawei", "SortedHuawei", "Home")</li>
             <li>@Html.ActionLink("Xiaomi", "SortedXiaomi", "Home")</li>
+
+
+            @if (User.Identity.Name == "admin")
+            {
+                <li>@Html.ActionLink("Add Goods", "AddGoods", "Home")</li> 
+            }
         </ul>
     </sidebar>
 

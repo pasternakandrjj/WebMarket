@@ -1,10 +1,7 @@
 ﻿@model IEnumerable<MyMagazine.Models.Phone>
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
-}  
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+}
 <table class="table">
     <tr>
         <th>Модель</th>
@@ -59,11 +56,14 @@
                     }
                 }
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Index", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+
+            @if (User.Identity.Name == "admin")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "EditGoods", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteGoods", new { id = item.Id })
+                </td>
+            }
         </tr>
     }
 
