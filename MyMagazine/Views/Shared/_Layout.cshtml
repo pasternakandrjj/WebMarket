@@ -16,32 +16,24 @@
         <nav>
             <ul>
                 <ol>@Html.ActionLink("Go to home", "Index", "Home", null, new { @class = "MenuButtons" })</ol>
+
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <ol>@Html.ActionLink("Go to register", "Register", "Home", null, new { @class = "MenuButtons" })</ol>
-                }
-                @if (!User.Identity.IsAuthenticated)
-                {
+
                     <ol>@Html.ActionLink("Go to login", "Login", "Home", null, new { @class = "MenuButtons" })</ol>
                 }
-
                 @if (User.Identity.IsAuthenticated)
                 {
                     <ol>@Html.ActionLink("Go to basket", "Basket", "Home", null, new { @class = "MenuButtons" })</ol>
-                }
-                @if (User.Identity.IsAuthenticated)
-                {
+
                     <ol>@Html.ActionLink("Log out", "Logoff", "Home", null, new { @class = "MenuButtons" })</ol>
                 }
             </ul>
         </nav>
     </header>
 
-
-
-
     <sidebar id="sidebar">
-        <p>SIDEBAR HERE</p>
         <ul>
             <li>@Html.ActionLink("Go to home", "Index", "Home")</li>
             <li>@Html.ActionLink("Apple", "SortedApple", "Home")</li>
@@ -50,20 +42,16 @@
             <li>@Html.ActionLink("Huawei", "SortedHuawei", "Home")</li>
             <li>@Html.ActionLink("Xiaomi", "SortedXiaomi", "Home")</li>
 
-
             @if (User.Identity.Name == "admin")
             {
-                <li>@Html.ActionLink("Add Goods", "AddGoods", "Home")</li> 
+                <li>@Html.ActionLink("Add Goods", "AddGoods", "Home")</li>
             }
         </ul>
     </sidebar>
 
-
     <main>
         @RenderBody()
     </main>
-
-
 
     <footer>
         <p>

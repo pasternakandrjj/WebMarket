@@ -14,12 +14,10 @@ namespace MyMagazine.Providers
             string[] roles = new string[] { };
             using (UserContext db = new UserContext())
             {
-                // Получаем пользователя
                 User user = db.Users.FirstOrDefault(u => u.Email == username);
                 if (user != null)
                 {
                     Role role = db.Roles.Find(user.RoleId);
-                    // получаем роль
                     if (role != null)
                         roles = new string[] { role.Name };
                 }
@@ -37,7 +35,6 @@ namespace MyMagazine.Providers
             bool result = false;
             using (UserContext db = new UserContext())
             {
-                // Получаем пользователя
                 User user = db.Users.FirstOrDefault(u => u.Email == username);
 
                 if (user != null)

@@ -29,7 +29,7 @@ namespace MyMagazine.Models
                 Age = 100,
                 RoleId = 1,
             });
-            base.Seed(db);  
+            base.Seed(db);
         }
     }
 }

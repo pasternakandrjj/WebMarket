@@ -13,6 +13,7 @@ namespace MyMagazine.Controllers
     public class HomeController : Controller
     {
         PhoneContext phoneContext = new PhoneContext();
+
         public ActionResult Index(int page = 1)
         {
             int pageSize = 4;
@@ -35,10 +36,10 @@ namespace MyMagazine.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Buy(Purchase purchase)
+        public ActionResult Buy(Purchase purchase, int id)
         {
             purchase.DateTime = DateTime.Now;
-
+            purchase.PhoneId = id;
             phoneContext.Purchases.Add(purchase);
             phoneContext.SaveChanges();
 
@@ -64,7 +65,6 @@ namespace MyMagazine.Controllers
                 }
                 if (user == null)
                 {
-                    // создаем нового пользователя
                     using (UserContext db = new UserContext())
                     {
                         db.Users.Add(new User { Email = model.Email, Password = model.Password, Age = model.Age, RoleId = 2 });
@@ -72,7 +72,6 @@ namespace MyMagazine.Controllers
 
                         user = db.Users.Where(u => u.Email == model.Email && u.Password == model.Password).FirstOrDefault();
                     }
-                    // если пользователь удачно добавлен в бд
                     if (user != null)
                     {
                         FormsAuthentication.SetAuthCookie(model.Email, true);
@@ -100,7 +99,6 @@ namespace MyMagazine.Controllers
         {
             if (ModelState.IsValid)
             {
-                // поиск пользователя в бд
                 User user = null;
                 using (UserContext db = new UserContext())
                 {
@@ -122,7 +120,7 @@ namespace MyMagazine.Controllers
         [HttpGet]
         public ActionResult Basket(int page = 1)
         {
-            int pageSize = 20; // количество объектов на страницу
+            int pageSize = 20;
             IEnumerable<Purchase> phonesPerPages = phoneContext.Purchases
                 .Where(x => x.Email == User.Identity.Name)
                 .OrderBy(x => x.DateTime)
@@ -136,8 +134,7 @@ namespace MyMagazine.Controllers
         [HttpGet]
         public ActionResult SortedApple(int page = 1)
         {
-            int pageSize = 4; // количество объектов на страницу
-
+            int pageSize = 4;
             IEnumerable<Phone> iphones = phoneContext.Phones
                 .Where(x => x.Producer == "Apple")
                 .OrderBy(x => x.Id)
@@ -151,8 +148,7 @@ namespace MyMagazine.Controllers
         [HttpGet]
         public ActionResult SortedHuawei(int page = 1)
         {
-            int pageSize = 4; // количество объектов на страницу
-
+            int pageSize = 4;
             IEnumerable<Phone> huaweis = phoneContext.Phones
                 .Where(x => x.Producer == "Huawei")
                 .OrderBy(x => x.Id)
@@ -166,7 +162,7 @@ namespace MyMagazine.Controllers
         [HttpGet]
         public ActionResult SortedMicrosoft(int page = 1)
         {
-            int pageSize = 4; // количество объектов на страницу 
+            int pageSize = 4;
             IEnumerable<Phone> microsofts = phoneContext.Phones
                 .Where(x => x.Producer == "WindowsPhone")
                 .OrderBy(x => x.Id)
@@ -180,7 +176,7 @@ namespace MyMagazine.Controllers
         [HttpGet]
         public ActionResult SortedSamsung(int page = 1)
         {
-            int pageSize = 4; // количество объектов на страницу 
+            int pageSize = 4;
             IEnumerable<Phone> microsofts = phoneContext.Phones
                 .Where(x => x.Producer == "Samsung")
                 .OrderBy(x => x.Id)
@@ -214,27 +210,33 @@ namespace MyMagazine.Controllers
         {
             phoneContext.Phones.Add(phone);
             phoneContext.SaveChanges();
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         [Authorize(Roles = "admin")]
         public ActionResult EditGoods(int? id)
         {
-            var toupdate = phoneContext.Phones
-                .Where(s => s.Id == id)
-                .FirstOrDefault();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var toupdate = phoneContext.Phones.Find(id);
+            if (toupdate == null)
+            {
+                return HttpNotFound();
+            }
             return View(toupdate);
         }
-        //Зміна видаляє елемнт і добавляє в уінець змінений
+
         [HttpPost]
         [Authorize(Roles = "admin")]
         public ActionResult EditGoods(int id, Phone phone)
         {
+            phoneContext.Phones.Find(id).Name = phone.Name;
+            phoneContext.Phones.Find(id).Price = phone.Price;
+            phoneContext.Phones.Find(id).Producer = phone.Producer;
 
-            Phone todelete = phoneContext.Phones.Find(id);
-            phoneContext.Phones.Remove(todelete);
-            phoneContext.Phones.Add(phone);
             phoneContext.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,24 +1,63 @@
 ﻿* {
-    padding: 0px, inherit,20px;
     padding-bottom: 20px;
-    background-color: #F6F6F6;
     font-family: Consolas,'Segoe UI',Arial;
-    background-color: khaki;
+}
+
+body {
+    background-color: #c8d6e5;
+    height: 100%;
+    padding-bottom: 60px;
+    font-size: 15px;
+}
+
+header {
+    background-color: #192a56;
+    height: 120px;
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    margin-top: -20px;
+}
+
+sidebar {
+    margin-top: 20px;
+    background-color: #c8d6e5;
+    float: left;
+    width: 15%;
+    position: relative;
+    font-size: 20px;
+}
+
+main {
+    margin-top: 10px;
+    margin-left: 17%;
+    padding-left: 20px;
+    min-height: 500px;
+    max-width: 80%;
+    font-size: 20px;
+    position: relative;
+    text-align: center;
+}
+
+footer {
+    padding-top: 30px;
+    text-align: center;
+    background-color: #576574;
+    position: absolute;
+    height: auto;
+    width: 100%;
+    border: 2px double black;
+    color: #c8d6e5;
+    font-size: 20px;
 }
 
 .form-group, .col-md-10, .form-horizontal {
     max-width: 80%;
-} 
-
-body {
-    background-color: black;
-    height: 100%;
-    text-align: center;
-    padding-bottom: 60px;
 }
 
-th {
-    text-align: center;
+h3 {
+    font-size: 30px;
+    color: #82589F;
 }
 
 .table img {
@@ -27,65 +66,35 @@ th {
     width: 100px;
 }
 
-header nav ul ol {
-    float: left;
-    padding-left: 270px;
-    font-size: 20px;
+a {
+    color: #2f3640;
 }
 
 header h1 {
     font-size: 30px;
     text-align: center;
-    color: darkblue;
+    color: #c8d6e5;
 }
 
-header {
-    background-color: #ccc;
-    border: 2px solid red;
-    height: 150px;
-    position: relative;
-    width: auto;
-    max-width: 100%;
+header a {
+    color: #487eb0;
+}
+
+header nav ul ol {
+    float: left;
+    padding-left: 20%;
+    font-size: 20px;
 }
 
 sidebar li {
     text-align: justify;
 }
 
-sidebar {
-    margin-top: 10px;
-    background-color: #bbbbbb;
-    border: 2px dotted red;
-    float: left;
-    width: 15%;
-    position: relative;
-
-}
-
-/*.btn-group {
-    position: relative;
-}*/
-
-table {
+table, table th {
+    text-align: center;
     align-content: center;
 }
 
-main { 
-    margin-top: 10px;
-    margin-left: 17%;
-    margin-right: 0px;
-    padding-left: 20px;
-    min-height: 500px;
-    max-width: 80%;
-    border: 2px double red;
-    font-size: 20px;
-    position: relative;
-}
-
-footer {
-    background-color: #ccc;
-    position: absolute;
-    height: 60px;
-    height: auto;
-    width: 100%;
+main a {
+    color: #B33771;
 }
