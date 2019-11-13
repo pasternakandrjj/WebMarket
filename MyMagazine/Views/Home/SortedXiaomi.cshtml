@@ -59,7 +59,7 @@
             </td>
             <td><a href="/Home/Buy/@item.Id">Buy</a></td>
 
-            @if (User.Identity.Name == "admin")
+            @if (User.Identity.Name == "admin@gmail.com")
             {
                 <td>
                     @Html.ActionLink("Edit", "EditGoods", new { id = item.Id }) |

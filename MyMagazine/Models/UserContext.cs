@@ -11,8 +11,8 @@ namespace MyMagazine.Models
         public UserContext() : base("DefaultConnection") { }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-
     }
+
     public class UserDbInitializer : DropCreateDatabaseAlways<UserContext>
     {
         protected override void Seed(UserContext db)
@@ -24,7 +24,7 @@ namespace MyMagazine.Models
             db.Users.Add(new User
             {
                 Id = 1,
-                Email = "admin",
+                Email = "admin@gmail.com",
                 Password = "admin",
                 Age = 100,
                 RoleId = 1,

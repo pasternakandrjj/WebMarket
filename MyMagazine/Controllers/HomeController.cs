@@ -38,10 +38,13 @@ namespace MyMagazine.Controllers
         [HttpPost]
         public ActionResult Buy(Purchase purchase, int id)
         {
-            purchase.DateTime = DateTime.Now;
-            purchase.PhoneId = id;
-            phoneContext.Purchases.Add(purchase);
-            phoneContext.SaveChanges();
+            if (purchase.Email == User.Identity.Name)
+            {
+                purchase.DateTime = DateTime.Now;
+                purchase.PhoneId = id;
+                phoneContext.Purchases.Add(purchase);
+                phoneContext.SaveChanges();
+            }
 
             return RedirectToAction("Basket", "Home");
         }
@@ -74,13 +77,13 @@ namespace MyMagazine.Controllers
                     }
                     if (user != null)
                     {
-                        FormsAuthentication.SetAuthCookie(model.Email, true);
+                        FormsAuthentication.SetAuthCookie(model.Email, true);//Створює квиток перевірки справжності для зазначеного імені користувача і додає його до колекції файлів Cookie відповіді або до URL-адресу
                         return RedirectToAction("Index", "Home");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Пользователь с таким логином уже существует");
+                    ModelState.AddModelError("", "User already exist!");
                 }
             }
 
@@ -106,12 +109,12 @@ namespace MyMagazine.Controllers
                 }
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(model.Email, true);
+                    FormsAuthentication.SetAuthCookie(model.Email, true);//Створює квиток перевірки справжності для зазначеного імені користувача і додає його до колекції файлів Cookie відповіді або до URL-адресу
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Пользователя с таким логином и паролем нет");
+                    ModelState.AddModelError("", "User is not real!");
                 }
             }
             return View(model);
@@ -191,8 +194,8 @@ namespace MyMagazine.Controllers
         public ActionResult SortedXiaomi()
         {
             IEnumerable<Phone> xiaomis = phoneContext.Phones
-                .Where(x => x.Producer == "Xiaomi");
-
+                .Where(x => x.Producer == "Xiaomi")
+                .OrderBy(x => x.Id);
 
             return View(xiaomis);
         }
